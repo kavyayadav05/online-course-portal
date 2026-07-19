@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Dashboard</h1>
+
+  <p id="welcome"></p>
+  <p id="totalCourses"></p>
+  <p id="enrolledCourses"></p>
+
+  <a href="courses.html">
+    <button>Manage Courses</button>
+  </a>
+
+  <br><br>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+let user = localStorage.getItem("loggedInUser");
+
+// If not logged in
+if (!user) {
+  window.location.href = "login.html";
+}
+
+// Welcome message
+document.getElementById("welcome").innerText = "Welcome " + user;
+
+// Get courses
+let courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+// Total courses
+document.getElementById("totalCourses").innerText =
+  "Total Courses: " + courses.length;
+
+// ✅ FIXED ENROLLED COUNT (USER BASED)
+let enrolledCount = courses.filter(c =>
+  c.enrolledStudents && c.enrolledStudents.includes(user)
+).length;
+
+document.getElementById("enrolledCourses").innerText =
+  "Enrolled: " + enrolledCount;
+
+// Logout function
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Certificate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="certificate">
+  <h1>Certificate of Completion 🎓</h1>
+  <p>This certifies that</p>
+  <h2 id="name"></h2>
+  <p>has successfully completed the course.</p>
+  <h3>Congratulations 🎉</h3>
+  <br><br>
+  <a href="courses.html"><button>Back to Courses</button></a>
+  <br><br>
+  <a href="login.html"><button>Login Again</button></a>
+  <a href="register.html"><button>Register New User</button></a>
+</div>
+<script>
+document.getElementById("name").innerText = localStorage.getItem("loggedInUser");
+</script>
+</body>
+</html>
